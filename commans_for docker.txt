@@ -39,3 +39,10 @@ Steps:
 
 9. Create a django project in the docker container
         $ sudo docker-compose run --rm app sh -c "django-admin startproject app ."  // here . is to avoid creating the sub-directory
+
+10. Run django project within the docker container
+        $ sudo docker-composer up
+
+11. Create github actions - steps ->
+        > create checks.yml within (root direction) .github/workflows/checks.yml
+        > then populate the checks.yml file
