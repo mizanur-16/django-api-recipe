@@ -1,0 +1,41 @@
+Steps:
+1. Create a project on github and pull to our local machine
+2. Create the following files and a folder, then populate them with the text first
+        > Dockerfile
+        > requirements.txt
+        > .dockerignore
+        > app
+
+3. Install docker and docker-compose in our local machine if not already installed. (this is one time action)
+        $ sudo apt install docker.io
+        $ sudo apt install docker-compose
+
+4. Execute the build command
+        $ sudo docker build .  // here . is for current directory
+
+5. Create docker-compose.yml and populate with and then build a docker-compose image
+        $ sudo docker-compose build
+
+6. Extention download on VSCode
+        > docker  (for automated docker command)
+        > Flake8  (for linting)
+        > Pylance
+
+7. Install flake8 package
+        $ sudo apt-get update
+        $ sudo apt-get install flake8
+   then run it in the docker container
+        $ sudo docker-compose run --rm app sh -c "flake8"  // this command is not working on my machine
+
+8. Now some work with flake8.
+        > create requirements.dev.txt file and populate with code I made.
+        > update docker-compose.yml file by adding new lines in no (7,12, 16-18)
+        > and finally build the docker image again
+                $ sudo docker-compose build
+
+        > create requirements.dev.txt file and populate with code
+        > then run the flake8 running command again
+                $ sudo docker-compose run --rm app sh -c "flake8"  // this command is not working on my machine
+
+9. Create a django project in the docker container
+        $ sudo docker-compose run --rm app sh -c "django-admin startproject app ."  // here . is to avoid creating the sub-directory
