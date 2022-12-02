@@ -22,10 +22,13 @@ Steps:
         > Pylance
 
 7. Install flake8 package
-        $ sudo apt-get update
-        $ sudo apt-get install flake8
-   then run it in the docker container
-        $ sudo docker-compose run --rm app sh -c "flake8"  // this command is not working on my machine
+        $ sudo -H pip3 install flake8  // (here 3 is for python3)
+        
+        > then run it in the docker container
+                $ sudo docker-compose run --rm app sh -c "flake8"  // this command is not working on my machine
+
+     // > to uninstall a package
+                $ sudo pip uninstall <flake8>  //
 
 8. Now some work with flake8.
         > create requirements.dev.txt file and populate with code I made.
