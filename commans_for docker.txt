@@ -21,16 +21,8 @@ Steps:
         > Flake8  (for linting)
         > Pylance
 
-7. Install flake8 package
-        $ sudo -H pip3 install flake8  // (here 3 is for python3)
-        
-        > then run it in the docker container
-                $ sudo docker-compose run --rm app sh -c "flake8"  // this command is not working on my machine
 
-     // > to uninstall a package
-                $ sudo pip uninstall <flake8>  //
-
-8. Now some work with flake8.
+7. Now some work with flake8.
         > create requirements.dev.txt file and populate with code I made.
         > update docker-compose.yml file by adding new lines in no (7,12, 16-18)
         > and finally build the docker image again
@@ -40,12 +32,31 @@ Steps:
         > then run the flake8 running command again
                 $ sudo docker-compose run --rm app sh -c "flake8"  // this command is not working on my machine
 
-9. Create a django project in the docker container
+8. Create a django project in the docker container
         $ sudo docker-compose run --rm app sh -c "django-admin startproject app ."  // here . is to avoid creating the sub-directory
 
-10. Run django project within the docker container
+9. Run django project within the docker container
         $ sudo docker-composer up
 
-11. Create github actions - steps ->
+10. Create github actions - steps ->
         > create checks.yml within (root direction) .github/workflows/checks.yml
         > then populate the checks.yml file
+
+11. Adding Database services to Docker 
+        > update docker-compose.yml file with line 15 to 33 and then
+        $ sudo docker-compose up  // to stest if everything added correctly 
+        finally Ctrl+C and 
+                $ sudo docker-compose down  // to completely stop the container services
+
+12. Connect Database with django using docker
+        > add the following in order and sequence as in Dockerfile
+                apk add --update --no-cache postgresql-client && \
+                apk add --update --no-cache --virtual .tmp-build-deps \
+                build-base postgresql-dev musl-dev && \
+
+                apk del .tmp-build-deps && \
+
+        > update the requirements.txt file with
+                psycopg2>=2.8.6,<2.9   // it is a adapter to connect database with django
+
+
