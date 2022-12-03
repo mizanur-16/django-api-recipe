@@ -59,4 +59,23 @@ Steps:
         > update the requirements.txt file with
                 psycopg2>=2.8.6,<2.9   // it is a adapter to connect database with django
 
+        *** finally build the docker-compose and push to git 
+                $ sudo docker-compose build
+
+        > update the DATABASES array of settings.py file with postgresql engine
+
+        > add wait_for_db with the following steps
+                > create new app called core
+                        $ sudo docker-compose run --rm app sh -c "python manage.py startapp core"
+                        > add this app to settings.py > INSTALLED_APPS
+                > 'core' app structured with file and folders that contains
+                        > test files &
+                        > wait_for_db.py file
+                        *** copy them all
+                > after having done the test files, we can execute the following to test
+                        $ sudo docker-compose run --rm app sh -c "python manage.py test"  // for testing the whole project
+                        $ sudo docker-compose run --rm app sh -c "python manage.py <file_name>"  // for a single file testing
+                > and for flake8 as well
+                        $ sudo docker-compose run --rm app sh -c "python manage.py test && flake8"
+
 
