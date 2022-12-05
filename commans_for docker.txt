@@ -42,10 +42,10 @@ Steps:
         > create checks.yml within (root direction) .github/workflows/checks.yml
         > then populate the checks.yml file
 
-11. Adding Database services to Docker 
+11. Adding Database services to Docker
         > update docker-compose.yml file with line 15 to 33 and then
-        $ sudo docker-compose up  // to stest if everything added correctly 
-        finally Ctrl+C and 
+        $ sudo docker-compose up  // to stest if everything added correctly
+        finally Ctrl+C and
                 $ sudo docker-compose down  // to completely stop the container services
 
 12. Connect Database with django using docker
@@ -59,7 +59,7 @@ Steps:
         > update the requirements.txt file with
                 psycopg2>=2.8.6,<2.9   // it is a adapter to connect database with django
 
-        *** finally build the docker-compose and push to git 
+        *** finally build the docker-compose and push to git
                 $ sudo docker-compose build
 
         > update the DATABASES array of settings.py file with postgresql engine
@@ -79,7 +79,7 @@ Steps:
                         $ sudo docker-compose run --rm app sh -c "python manage.py test && flake8"
 
 13. Create custom User_model (DEEP DIVE)
-        > let's create a test class first with the core > tests > test_models.py before creating our custom User_model and 
+        > let's create a test class first with the core > tests > test_models.py before creating our custom User_model and
           run test command to check if our test model is correctly written.
 
         > update models.py (app/core) file with 2 classes -
@@ -108,17 +108,17 @@ Steps:
 
         > NORMALIZE USER MODEL // VIDEO (09:005)
                 > first write some test code in the test_models.py (i.e. def => test_new_user_email_normalized)
-                > then update models.py > class UserManager(BaseUserManager) > line 17 > 
+                > then update models.py > class UserManager(BaseUserManager) > line 17 >
                         > self.normalize_email(email)
-                
+
                 > now execute test command to check if everything ok
 
         > Raise ValueError if email address not provided // VIDEO (09:006)
                 > first write a test in test_models.py (i.e. def => test_new_user_without_email_raises_error)
-                > then update models.py > class UserManager(BaseUserManager) > above line 17 > 
+                > then update models.py > class UserManager(BaseUserManager) > above line 17 >
                         > if not email:
                                 raise ValueError('User must provide an email address')
-                
+
                 > now test them if it's working fine.
 
         > CREATE A SUPER_USER CLASS AND TEST METHOD
