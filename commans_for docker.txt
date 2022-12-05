@@ -105,3 +105,30 @@ Steps:
                 $ sudo docker-compose run --rm app sh -c "python manage.py test"
 
                 *** if any error found, just fix them and test again until successful.
+
+        > NORMALIZE USER MODEL // VIDEO (09:005)
+                > first write some test code in the test_models.py (i.e. def => test_new_user_email_normalized)
+                > then update models.py > class UserManager(BaseUserManager) > line 17 > 
+                        > self.normalize_email(email)
+                
+                > now execute test command to check if everything ok
+
+        > Raise ValueError if email address not provided // VIDEO (09:006)
+                > first write a test in test_models.py (i.e. def => test_new_user_without_email_raises_error)
+                > then update models.py > class UserManager(BaseUserManager) > above line 17 > 
+                        > if not email:
+                                raise ValueError('User must provide an email address')
+                
+                > now test them if it's working fine.
+
+        > CREATE A SUPER_USER CLASS AND TEST METHOD
+                > first write a test in test_models.py (i.e. def => test_create_superuser)
+                > then write a new def (i.e. create_superuser())
+
+                > now test them if it's working fine.
+
+        > CREATE SUPERUSER AND LOG INTO THE SERVER
+                > sudo docker-compose run --rm app sh -c "python manage.py createsuperuser"
+                        > add email and credentials
+                > visit > http://127.0.0.1:8000/admin/  and log in with credentials that we have just created
+
