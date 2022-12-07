@@ -132,3 +132,18 @@ Steps:
                         > add email and credentials
                 > visit > http://127.0.0.1:8000/admin/  and log in with credentials that we have just created
 
+
+14. DJANGO ADMIN
+        > It's all about only 2 files.
+                > admin.py and test_admin.py
+           Let's create two tests in core > tests > test_admin.py of the following
+                1. create superuser forcefully and a regular user
+                        => def setUp(self)
+                2. check if returned list contains the username or emeil that we have just created
+                        => def test_user_list(self)
+                3. user edit/delete page
+                        => test_edit_user_page(self)
+                4. create user test
+                        => test_create_user_page(self)
+
+        > Define UserAdmin class with BaseUserAdmin in admin.py file (upto line 47)
